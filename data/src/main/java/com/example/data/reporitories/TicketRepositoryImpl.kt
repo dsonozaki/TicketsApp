@@ -11,6 +11,7 @@ import com.sonozaki.ticketsapp.domain.entities.TravelParams
 import com.sonozaki.ticketsapp.domain.repositories.TicketRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 
@@ -24,7 +25,9 @@ class TicketRepositoryImpl(
 
     override fun getTickets(): Flow<RequestResult<List<Ticket>>> =
         merge(
-            ticketsDAO.getTickets().map { RequestResult.Data(ticketMapper.mapDbToDomainList(it)) },
+            ticketsDAO.getTickets().filter {
+                it.isNotEmpty()
+            }.map { RequestResult.Data(ticketMapper.mapDbToDomainList(it)) },
             errorFlow
         )
 

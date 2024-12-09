@@ -1,19 +1,18 @@
 package com.example.data.network
 
+import com.example.data.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiFactory {
 
-    private const val BASE_URL = "https://drive.usercontent.google.com/"
-
     fun createRetrofit(): Retrofit {
         val client = OkHttpClient.Builder()
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

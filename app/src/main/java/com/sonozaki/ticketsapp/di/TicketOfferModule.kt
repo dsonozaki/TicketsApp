@@ -25,5 +25,8 @@ class TicketOfferModule {
     fun provideTravelParams(): TravelParams? = null
 
     @Provides
+    fun provideEventFlow(): MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    @Provides
     fun provideDataValidFlow(): MutableSharedFlow<Boolean> = MutableSharedFlow()
 }

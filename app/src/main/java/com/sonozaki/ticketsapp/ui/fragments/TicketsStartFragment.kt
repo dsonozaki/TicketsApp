@@ -73,7 +73,7 @@ class TicketsStartFragment : Fragment() {
      * Restore fragment listener if bottom sheet fragment found. For some reason works more stable than saving data about opened bottom sheet in Flow.
      */
     private fun restoreFragmentListener() {
-        val endpointSelectionFragment = parentFragmentManager.findFragmentByTag(EndpointSelectionFragment.TAG);
+        val endpointSelectionFragment = parentFragmentManager.findFragmentByTag(EndpointSelectionFragment.TAG)
         endpointSelectionFragment?.setFragmentResultListener(REQUEST_KEY, ::bottomSheetResultListener)
     }
 

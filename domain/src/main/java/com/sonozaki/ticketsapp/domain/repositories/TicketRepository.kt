@@ -2,10 +2,10 @@ package com.sonozaki.ticketsapp.domain.repositories
 
 import com.sonozaki.ticketsapp.domain.entities.RequestResult
 import com.sonozaki.ticketsapp.domain.entities.Ticket
-import com.sonozaki.ticketsapp.domain.entities.TravelParams
 import kotlinx.coroutines.flow.Flow
+
 /**
- * This repository stores the tickets cache. Cache invalidates if travel params provided .
+ * This repository stores the tickets cache.
  */
 interface TicketRepository {
     /**
@@ -13,7 +13,8 @@ interface TicketRepository {
      */
     fun getTickets(): Flow<RequestResult<List<Ticket>>>
     /**
-     * Load new data in cache. Must be called only if cache invalidated.
+     * Load new data in cache. Must be called only if data not found in cache.
+     * @return true if data loaded successfully
      */
-    suspend fun updateTickets()
+    suspend fun updateTickets(): Boolean
 }

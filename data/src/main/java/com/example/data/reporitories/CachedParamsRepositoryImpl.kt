@@ -26,25 +26,37 @@ class CachedParamsRepositoryImpl(
         travelParamsSerializer
     )
 
-    private suspend fun updateParams(
+    private suspend fun checkParams(
         paramsDatastore: DataStore<TravelParamsDto>,
         params: TravelParams
     ): Boolean {
         val currentParams = travelParamsMapper.mapDtoToDomain(paramsDatastore.data.first())
-        if (currentParams == params)
-            return false
+        return currentParams != params
+    }
+
+    private suspend fun updateParams(
+        paramsDatastore: DataStore<TravelParamsDto>,
+        params: TravelParams
+    ) {
         paramsDatastore.updateData {
             travelParamsMapper.mapDomainToDto(params)
         }
-        return true
     }
 
-    override suspend fun updateCachedOffersParams(params: TravelParams): Boolean {
-        return updateParams(context.cachedTicketOffersParams, params)
+    override suspend fun updateCachedOffersParams(params: TravelParams) {
+        updateParams(context.cachedTicketOffersParams, params)
     }
 
-    override suspend fun updateCachedTicketsParams(params: TravelParams): Boolean {
-        return updateParams(context.cachedTicketParams, params)
+    override suspend fun checkCachedOffersParams(params: TravelParams): Boolean {
+        return checkParams(context.cachedTicketOffersParams, params)
+    }
+
+    override suspend fun updateCachedTicketsParams(params: TravelParams) {
+        updateParams(context.cachedTicketParams, params)
+    }
+
+    override suspend fun checkCachedTicketsParams(params: TravelParams): Boolean {
+        return checkParams(context.cachedTicketParams, params)
     }
 
     companion object {

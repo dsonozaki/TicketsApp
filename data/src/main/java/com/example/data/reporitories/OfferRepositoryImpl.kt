@@ -27,10 +27,10 @@ class OfferRepositoryImpl(
 
     override suspend fun updateData() {
         if (!loaded) {
+            offersDAO.clear()
             val offers = safeApiCall { offersApiService.getOffers() }
             when (offers) {
                 is RequestResult.Data<OffersResponseDto> -> {
-                    offersDAO.clear()
                     offersDAO.insert(offerMapper.mapDtoToDbList(offers.data))
                     loaded = true
                 }

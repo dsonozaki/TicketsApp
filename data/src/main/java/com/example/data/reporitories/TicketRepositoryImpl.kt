@@ -7,7 +7,6 @@ import com.example.data.network.TicketsApiService
 import com.example.data.network.safeApiCall
 import com.sonozaki.ticketsapp.domain.entities.RequestResult
 import com.sonozaki.ticketsapp.domain.entities.Ticket
-import com.sonozaki.ticketsapp.domain.entities.TravelParams
 import com.sonozaki.ticketsapp.domain.repositories.TicketRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -33,18 +32,22 @@ class TicketRepositoryImpl(
             errorFlow
         )
 
-    override suspend fun updateTickets() {
+    override suspend fun updateTickets(): Boolean {
         val tickets = safeApiCall { ticketsApiService.getTickets() }
         when (tickets) {
-            is RequestResult.Error<TicketsResponseDto> -> errorFlow.emit(
-                RequestResult.Error<List<Ticket>>(
-                    tickets.errorText
+            is RequestResult.Error<TicketsResponseDto> -> {
+                errorFlow.emit(
+                    RequestResult.Error<List<Ticket>>(
+                        tickets.errorText
+                    )
                 )
-            )
+                return false
+            }
 
             is RequestResult.Data<TicketsResponseDto> -> {
                 ticketsDAO.clear()
                 ticketsDAO.insert(ticketMapper.mapDtoToDbList(tickets.data))
+                return true
             }
         }
     }

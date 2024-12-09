@@ -7,7 +7,6 @@ import com.example.data.network.OfferTicketsApiService
 import com.example.data.network.safeApiCall
 import com.sonozaki.ticketsapp.domain.entities.RequestResult
 import com.sonozaki.ticketsapp.domain.entities.TicketOffer
-import com.sonozaki.ticketsapp.domain.entities.TravelParams
 import com.sonozaki.ticketsapp.domain.repositories.TicketOfferRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -31,18 +30,22 @@ class TicketOfferRepositoryImpl(
     )
 
 
-    override suspend fun updateTicketOffers() {
+    override suspend fun updateTicketOffers(): Boolean {
         val ticketOffers = safeApiCall { ticketsOfferApiService.getOfferTickets() }
         when (ticketOffers) {
-            is RequestResult.Error<TicketOffersResponseDto> -> errorFlow.emit(
-                RequestResult.Error<List<TicketOffer>>(
-                    ticketOffers.errorText
+            is RequestResult.Error<TicketOffersResponseDto> -> {
+                errorFlow.emit(
+                    RequestResult.Error<List<TicketOffer>>(
+                        ticketOffers.errorText
+                    )
                 )
-            )
+                return false
+            }
 
             is RequestResult.Data<TicketOffersResponseDto> -> {
                 ticketsOfferDAO.clear()
                 ticketsOfferDAO.insert(ticketOfferMapper.mapDtoToDbList(ticketOffers.data))
+                return true
             }
         }
     }

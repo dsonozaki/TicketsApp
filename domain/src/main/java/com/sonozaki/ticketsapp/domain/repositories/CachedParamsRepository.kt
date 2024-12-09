@@ -7,15 +7,27 @@ import com.sonozaki.ticketsapp.domain.entities.TravelParams
  */
 interface CachedParamsRepository {
     /**
-     * Update cached ticket offers parameters.
+     * Update cached ticket offers parameters. Must be called only if data updated successfully.
      * @param params - params of travel. Include departure city, arrival city and departure date
-     * @return true, if parameters provided differ from old parameters
      */
-    suspend fun updateCachedOffersParams(params: TravelParams): Boolean
+    suspend fun updateCachedOffersParams(params: TravelParams)
+
     /**
-     * Update cached ticket parameters.
-     * @param params - params of travel. Include departure city, arrival city and departure date
+     * Check if new ticket offer parameters are different from cached ones.
      * @return true, if parameters provided differ from old parameters
      */
-    suspend fun updateCachedTicketsParams(params: TravelParams): Boolean
+    suspend fun checkCachedOffersParams(params: TravelParams): Boolean
+
+    /**
+     * Update cached ticket parameters. Must be called only if data updated successfully.
+     * @param params - params of travel. Include departure city, arrival city and departure date
+     */
+    suspend fun updateCachedTicketsParams(params: TravelParams)
+
+    /**
+     * Check if new ticket parameters are different from cached ones.
+     * @return true, if parameters provided differ from old parameters
+     */
+    suspend fun checkCachedTicketsParams(params: TravelParams): Boolean
+
 }

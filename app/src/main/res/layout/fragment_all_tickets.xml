@@ -40,8 +40,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/normal"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title3"
                     android:singleLine="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title3"
                     android:textColor="@color/white"
                     tools:text="Москва - Сочи" />
 
@@ -50,8 +50,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/normal"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
                     android:singleLine="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
                     android:textColor="@color/grey6"
                     tools:text="23 февараля, 1 пассажир" />
 
@@ -86,8 +86,8 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:drawablePadding="@dimen/small"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
             android:text="@string/filter"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/filter"
             app:drawableTint="@color/white" />
@@ -99,8 +99,8 @@
             android:layout_marginStart="@dimen/big"
             android:background="@null"
             android:drawablePadding="@dimen/small"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
             android:text="@string/price_chart"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
             android:textColor="@color/white"
             app:drawableStartCompat="@drawable/diagram"
             app:drawableTint="@color/white" />

@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EndpointSelectionFragment: BottomSheetDialogFragment() {
+class EndpointSelectionFragment : BottomSheetDialogFragment() {
 
     @Inject
     lateinit var inputFilter: CyrillicInputFilter
@@ -69,7 +69,7 @@ class EndpointSelectionFragment: BottomSheetDialogFragment() {
         setupDialogBackground()
         arguments?.let {
             val startPoint = it.getString(START_POINT) ?: ""
-            binding.startPoint.text =startPoint
+            binding.startPoint.text = startPoint
         }
         listenToButtons()
         listenToTextInput()
@@ -78,7 +78,8 @@ class EndpointSelectionFragment: BottomSheetDialogFragment() {
     fun setupDialogBackground() {
         dialog?.apply {
             setOnShowListener {
-                val bottomSheet = findViewById<View?>(com.google.android.material.R.id.design_bottom_sheet)
+                val bottomSheet =
+                    findViewById<View?>(com.google.android.material.R.id.design_bottom_sheet)
                 bottomSheet?.setBackgroundResource(android.R.color.transparent)
             }
         }

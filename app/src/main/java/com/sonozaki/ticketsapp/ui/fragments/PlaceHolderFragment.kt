@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.sonozaki.ticketsapp.databinding.FragmentPlaceholderBinding
-import com.sonozaki.ticketsapp.databinding.FragmentShorterBinding
 
-class PlaceHolderFragment: Fragment() {
+class PlaceHolderFragment : Fragment() {
 
     private var _binding: FragmentPlaceholderBinding? = null
 

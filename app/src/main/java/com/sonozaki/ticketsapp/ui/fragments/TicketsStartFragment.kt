@@ -72,7 +72,7 @@ class TicketsStartFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.startCity.collect {
-                    if (it!=null) {
+                    if (it != null) {
                         binding.startPoint.setText(it)
                     }
                 }
@@ -95,7 +95,10 @@ class TicketsStartFragment : Fragment() {
                 val bottomSheetFragment =
                     EndpointSelectionFragment.newInstance(startPointText)
                 bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
-                bottomSheetFragment.setFragmentResultListener(REQUEST_KEY, ::bottomSheetResultListener)
+                bottomSheetFragment.setFragmentResultListener(
+                    REQUEST_KEY,
+                    ::bottomSheetResultListener
+                )
             }
         }
     }
@@ -149,6 +152,7 @@ class TicketsStartFragment : Fragment() {
                         is OfferState.Loading -> {
                             setupLoading()
                         }
+
                         is OfferState.Data -> {
                             setupData(it.offersResult)
                         }
@@ -166,7 +170,7 @@ class TicketsStartFragment : Fragment() {
         binding.progress.visibility = View.GONE
         when (result) {
             is RequestResult.Data -> offerDifferAdapter.items = result.data
-            is RequestResult.Error -> Log.w("net_error",result.errorText)
+            is RequestResult.Error -> Log.w("net_error", result.errorText)
         }
     }
 

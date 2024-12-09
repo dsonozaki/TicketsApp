@@ -1,6 +1,5 @@
 package com.example.data.reporitories
 
-import android.util.Log
 import com.example.data.db.dao.TicketOffersDAO
 import com.example.data.dto.TicketOffersResponseDto
 import com.example.data.mappers.TicketOfferMapper
@@ -12,7 +11,6 @@ import com.sonozaki.ticketsapp.domain.entities.TravelParams
 import com.sonozaki.ticketsapp.domain.repositories.TicketOfferRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
@@ -21,7 +19,8 @@ class TicketOfferRepositoryImpl(
     private val ticketsOfferApiService: OfferTicketsApiService,
     private val ticketsOfferDAO: TicketOffersDAO,
     private val ticketOfferMapper: TicketOfferMapper,
-    private val errorFlow: MutableSharedFlow<RequestResult.Error<List<TicketOffer>>>) : TicketOfferRepository {
+    private val errorFlow: MutableSharedFlow<RequestResult.Error<List<TicketOffer>>>
+) : TicketOfferRepository {
 
     override fun getTicketOffers(): Flow<RequestResult<List<TicketOffer>>> = merge(
         ticketsOfferDAO.getTicketOffers().filter { it.isNotEmpty() }

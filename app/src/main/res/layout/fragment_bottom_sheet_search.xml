@@ -2,11 +2,11 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/rounded_top_corners"
     android:backgroundTint="@color/grey2"
-    android:id="@+id/root_container"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <LinearLayout
@@ -144,7 +144,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></Space>
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:id="@+id/anywhere"
@@ -177,7 +177,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></Space>
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:id="@+id/weekend"
@@ -209,7 +209,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></Space>
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:id="@+id/hot_tickets"
@@ -246,17 +246,17 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/big"
             android:layout_marginTop="@dimen/large"
-            app:cardBackgroundColor="@color/grey3"
             android:orientation="vertical"
+            app:cardBackgroundColor="@color/grey3"
             app:cardCornerRadius="@dimen/big">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/big"
                 android:layout_marginHorizontal="@dimen/big"
-                android:layout_marginBottom="@dimen/normal">
+                android:layout_marginTop="@dimen/big"
+                android:layout_marginBottom="@dimen/normal"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/istanbul"

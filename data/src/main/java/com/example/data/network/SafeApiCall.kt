@@ -4,7 +4,7 @@ import com.sonozaki.ticketsapp.domain.entities.RequestResult
 import retrofit2.Response
 import java.io.IOException
 
-suspend fun <T> safeApiCall(unsafeCall: suspend() -> Response<T>): RequestResult<T> {
+suspend fun <T> safeApiCall(unsafeCall: suspend () -> Response<T>): RequestResult<T> {
     return try {
         val response = unsafeCall()
         if (response.isSuccessful) {
@@ -19,7 +19,7 @@ suspend fun <T> safeApiCall(unsafeCall: suspend() -> Response<T>): RequestResult
     } catch (e: IOException) {
         RequestResult.Error<T>("$CONNECTION_ERROR: ${e.message}")
     } catch (e: Exception) {
-        RequestResult.Error<T>(e.message?: "")
+        RequestResult.Error<T>(e.message ?: "")
     }
 }
 

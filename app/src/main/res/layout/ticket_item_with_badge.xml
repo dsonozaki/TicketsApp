@@ -4,19 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingTop="10dp"
+    android:layout_height="wrap_content"
     android:clipToPadding="false"
-    android:layout_height="wrap_content">
+    android:paddingTop="10dp">
 
-    <androidx.cardview.widget.CardView android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        app:cardCornerRadius="@dimen/normal"
-        app:cardBackgroundColor="@color/grey1">
+        app:cardBackgroundColor="@color/grey1"
+        app:cardCornerRadius="@dimen/normal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
@@ -43,10 +45,10 @@
                     android:layout_width="@dimen/big_icon_size"
                     android:layout_height="@dimen/big_icon_size"
                     android:layout_marginTop="@dimen/normal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:background="@drawable/circle"
-                    android:backgroundTint="@color/red" />
+                    android:backgroundTint="@color/red"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -79,7 +81,7 @@
                     android:layout_marginStart="@dimen/small"
                     android:layout_marginEnd="@dimen/small"
                     android:text="—"
-                    android:textColor="@color/grey6"/>
+                    android:textColor="@color/grey6" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -117,17 +119,18 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/comment_badge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:translationY="-10dp"
         android:background="@drawable/chip_rounded_corners"
         android:backgroundTint="@color/blue"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
+        android:elevation="@dimen/small"
         android:paddingHorizontal="10dp"
         android:paddingVertical="2dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
         android:textColor="@color/white"
-        android:elevation="@dimen/small"
+        android:translationY="-10dp"
         tools:text="Прилёт вечером" />
 </FrameLayout>

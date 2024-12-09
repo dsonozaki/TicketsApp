@@ -8,11 +8,12 @@ import com.sonozaki.ticketsapp.domain.repositories.StartCityRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class StartCityRepositoryImpl(private val context: Context): StartCityRepository {
+class StartCityRepositoryImpl(private val context: Context) : StartCityRepository {
 
     private val Context.startCityDataStore by preferencesDataStore(START_CITY_STORAGE)
 
-    override fun getStartPoint(): Flow<String> = context.startCityDataStore.data.map {  it[KEY_DATASTORE] ?: "" }
+    override fun getStartPoint(): Flow<String> =
+        context.startCityDataStore.data.map { it[KEY_DATASTORE] ?: "" }
 
     override suspend fun updateStartPoint(point: String) {
         context.startCityDataStore.edit { it[KEY_DATASTORE] = point }

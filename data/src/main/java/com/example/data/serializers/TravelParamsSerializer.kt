@@ -8,14 +8,16 @@ import java.io.InputStream
 import java.io.OutputStream
 import javax.inject.Inject
 
-class TravelParamsSerializer @Inject constructor(): Serializer<TravelParamsDto> {
+class TravelParamsSerializer @Inject constructor() : Serializer<TravelParamsDto> {
     override val defaultValue: TravelParamsDto
         get() = TravelParamsDto()
 
     override suspend fun readFrom(input: InputStream): TravelParamsDto {
         return try {
-            Json.decodeFromString(deserializer = TravelParamsDto.serializer(),
-                string = input.readBytes().decodeToString())
+            Json.decodeFromString(
+                deserializer = TravelParamsDto.serializer(),
+                string = input.readBytes().decodeToString()
+            )
         } catch (e: SerializationException) {
             defaultValue
         }

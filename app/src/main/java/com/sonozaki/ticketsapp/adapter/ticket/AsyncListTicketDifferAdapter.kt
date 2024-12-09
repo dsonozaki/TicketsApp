@@ -1,7 +1,7 @@
-package com.sonozaki.ticketsapp.adapter.ticket;
+package com.sonozaki.ticketsapp.adapter.ticket
 
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
-import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter;
+import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.sonozaki.ticketsapp.domain.entities.Ticket
 import javax.inject.Inject
 import javax.inject.Named

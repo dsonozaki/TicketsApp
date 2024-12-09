@@ -29,7 +29,7 @@ fun formatDaysSinceEpoch(context: Context, daysSinceEpoch: Long): DateParts {
     //val locale = context.resources.configuration.getLocales().get(0)
     val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale(LOCALE))
     val dayOfWeekFormat = SimpleDateFormat(WEEK_DAY_FORMAT, Locale(LOCALE))
-    return DateParts(dateFormat.format(date),dayOfWeekFormat.format(date))
+    return DateParts(dateFormat.format(date), dayOfWeekFormat.format(date))
 }
 
 fun formatDateTimeToHours(isoString: String): String {

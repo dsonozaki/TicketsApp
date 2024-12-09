@@ -1,113 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
-    app:cardCornerRadius="@dimen/normal"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    app:cardBackgroundColor="@color/grey1">
+    app:cardBackgroundColor="@color/grey1"
+    app:cardCornerRadius="@dimen/normal">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/big"
-        android:layout_marginTop="@dimen/big"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title1"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="7 386 ₽" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/big"
-        android:layout_marginTop="@dimen/big"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/price">
-
-        <View
-            android:id="@+id/item_circle"
-            android:layout_width="@dimen/big_icon_size"
-            android:layout_height="@dimen/big_icon_size"
-            android:layout_marginTop="@dimen/normal"
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/big"
+            android:layout_marginTop="@dimen/big"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title1"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/circle"
-            android:backgroundTint="@color/red" />
+            tools:text="7 386 ₽" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normal"
-            android:layout_marginBottom="23dp"
-            android:orientation="vertical">
+            android:layout_marginStart="@dimen/big"
+            android:layout_marginTop="@dimen/big"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/price">
 
-            <TextView
-                android:id="@+id/time_start"
+            <View
+                android:id="@+id/item_circle"
+                android:layout_width="@dimen/big_icon_size"
+                android:layout_height="@dimen/big_icon_size"
+                android:layout_marginTop="@dimen/normal"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/red"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
-                android:textColor="@color/white"
-                tools:text="12:00" />
+                android:layout_marginStart="@dimen/normal"
+                android:layout_marginBottom="23dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/time_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
+                    android:textColor="@color/white"
+                    tools:text="12:00" />
+
+                <TextView
+                    android:id="@+id/origin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
+                    android:textColor="@color/grey6"
+                    tools:text="DME" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/origin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
-                android:textColor="@color/grey6"
-                tools:text="DME" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small"
-            android:layout_marginEnd="@dimen/small"
-            android:text="—"
-            android:textColor="@color/grey6"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/time_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
-                android:textColor="@color/white"
-                tools:text="15:35" />
+                android:layout_marginStart="@dimen/small"
+                android:layout_marginEnd="@dimen/small"
+                android:text="—"
+                android:textColor="@color/grey6" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/time_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
+                    android:textColor="@color/white"
+                    tools:text="15:35" />
+
+                <TextView
+                    android:id="@+id/destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
+                    android:textColor="@color/grey6"
+                    tools:text="AER" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/destination"
-                android:layout_width="match_parent"
+                android:id="@+id/conditions"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
-                android:textColor="@color/grey6"
-                tools:text="AER" />
+                android:layout_marginStart="@dimen/normal"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Text2"
+                android:textColor="@color/white"
+                tools:text="3.5ч в пути / Без пересадок" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/conditions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normal"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Text2"
-            android:textColor="@color/white"
-            tools:text="3.5ч в пути / Без пересадок" />
-
-    </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

@@ -12,7 +12,7 @@ import com.example.data.db.entities.TicketDb
 import com.example.data.db.entities.TicketOfferDb
 
 @Database(entities = [TicketDb::class, OfferDb::class, TicketOfferDb::class], version = 1)
-abstract class TicketsAppDatabase: RoomDatabase() {
+abstract class TicketsAppDatabase : RoomDatabase() {
     abstract fun ticketsDao(): TicketsDAO
     abstract fun offersDao(): OffersDAO
     abstract fun ticketOffersDao(): TicketOffersDAO

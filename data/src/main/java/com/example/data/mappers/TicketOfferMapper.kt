@@ -1,16 +1,8 @@
 package com.example.data.mappers
 
-import com.example.data.db.entities.LuggageDb
-import com.example.data.db.entities.TicketDb
 import com.example.data.db.entities.TicketOfferDb
-import com.example.data.dto.HandLuggageDto
-import com.example.data.dto.PriceDto
 import com.example.data.dto.TicketOfferDto
 import com.example.data.dto.TicketOffersResponseDto
-import com.sonozaki.ticketsapp.domain.entities.HandLuggage
-import com.sonozaki.ticketsapp.domain.entities.Luggage
-import com.sonozaki.ticketsapp.domain.entities.Price
-import com.sonozaki.ticketsapp.domain.entities.Ticket
 import com.sonozaki.ticketsapp.domain.entities.TicketOffer
 import javax.inject.Inject
 

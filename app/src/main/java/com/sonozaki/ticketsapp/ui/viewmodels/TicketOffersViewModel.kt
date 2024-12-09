@@ -1,9 +1,7 @@
 package com.sonozaki.ticketsapp.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sonozaki.ticketsapp.domain.entities.RequestResult
 import com.sonozaki.ticketsapp.domain.entities.Travel
 import com.sonozaki.ticketsapp.domain.entities.TravelParams
 import com.sonozaki.ticketsapp.domain.usecases.GetTicketOffersUseCase
@@ -15,9 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Named
@@ -58,9 +54,8 @@ class TicketOffersViewModel @Inject constructor(
 
     private fun observeData() {
         viewModelScope.launch {
-            combine(_travelsFlow,_dateFlow) {
-                    travel, date ->
-                TravelParams(travel.startPoint,travel.endPoint,date)
+            combine(_travelsFlow, _dateFlow) { travel, date ->
+                TravelParams(travel.startPoint, travel.endPoint, date)
             }.collect {
                 _travelParams = it
                 updateTicketOffersUseCase(it)

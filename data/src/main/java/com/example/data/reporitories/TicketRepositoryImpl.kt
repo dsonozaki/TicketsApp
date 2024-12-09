@@ -1,14 +1,12 @@
 package com.example.data.reporitories
 
 import com.example.data.db.dao.TicketsDAO
-import com.example.data.dto.TicketOffersResponseDto
 import com.example.data.dto.TicketsResponseDto
 import com.example.data.mappers.TicketMapper
 import com.example.data.network.TicketsApiService
 import com.example.data.network.safeApiCall
 import com.sonozaki.ticketsapp.domain.entities.RequestResult
 import com.sonozaki.ticketsapp.domain.entities.Ticket
-import com.sonozaki.ticketsapp.domain.entities.TicketOffer
 import com.sonozaki.ticketsapp.domain.entities.TravelParams
 import com.sonozaki.ticketsapp.domain.repositories.TicketRepository
 import kotlinx.coroutines.flow.Flow

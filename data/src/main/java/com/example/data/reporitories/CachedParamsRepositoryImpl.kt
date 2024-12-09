@@ -10,13 +10,26 @@ import com.sonozaki.ticketsapp.domain.entities.TravelParams
 import com.sonozaki.ticketsapp.domain.repositories.CachedParamsRepository
 import kotlinx.coroutines.flow.first
 
-class CachedParamsRepositoryImpl(private val context: Context, travelParamsSerializer: TravelParamsSerializer, private val travelParamsMapper: TravelParamsMapper): CachedParamsRepository {
+class CachedParamsRepositoryImpl(
+    private val context: Context,
+    travelParamsSerializer: TravelParamsSerializer,
+    private val travelParamsMapper: TravelParamsMapper
+) : CachedParamsRepository {
 
-    private val Context.cachedTicketParams by dataStore(CACHED_TICKET_PARAMS,travelParamsSerializer)
+    private val Context.cachedTicketParams by dataStore(
+        CACHED_TICKET_PARAMS,
+        travelParamsSerializer
+    )
 
-    private val Context.cachedTicketOffersParams by dataStore(CACHED_TICKET_OFFERS_PARAMS,travelParamsSerializer)
+    private val Context.cachedTicketOffersParams by dataStore(
+        CACHED_TICKET_OFFERS_PARAMS,
+        travelParamsSerializer
+    )
 
-    private suspend fun updateParams(paramsDatastore: DataStore<TravelParamsDto>, params: TravelParams): Boolean {
+    private suspend fun updateParams(
+        paramsDatastore: DataStore<TravelParamsDto>,
+        params: TravelParams
+    ): Boolean {
         val currentParams = travelParamsMapper.mapDtoToDomain(paramsDatastore.data.first())
         if (currentParams == params)
             return false
@@ -27,11 +40,11 @@ class CachedParamsRepositoryImpl(private val context: Context, travelParamsSeria
     }
 
     override suspend fun updateCachedOffersParams(params: TravelParams): Boolean {
-        return updateParams(context.cachedTicketOffersParams,params)
+        return updateParams(context.cachedTicketOffersParams, params)
     }
 
     override suspend fun updateCachedTicketsParams(params: TravelParams): Boolean {
-        return updateParams(context.cachedTicketParams,params)
+        return updateParams(context.cachedTicketParams, params)
     }
 
     companion object {

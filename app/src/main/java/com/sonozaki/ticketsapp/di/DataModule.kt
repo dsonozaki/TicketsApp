@@ -5,14 +5,10 @@ import com.example.data.db.TicketsAppDatabase
 import com.example.data.db.dao.OffersDAO
 import com.example.data.db.dao.TicketOffersDAO
 import com.example.data.db.dao.TicketsDAO
-import com.example.data.mappers.OfferMapper
-import com.example.data.mappers.TicketMapper
-import com.example.data.mappers.TicketOfferMapper
 import com.example.data.network.ApiFactory
 import com.example.data.network.OfferTicketsApiService
 import com.example.data.network.OffersApiService
 import com.example.data.network.TicketsApiService
-import com.example.data.serializers.TravelParamsSerializer
 import com.sonozaki.ticketsapp.domain.entities.Offer
 import com.sonozaki.ticketsapp.domain.entities.RequestResult
 import com.sonozaki.ticketsapp.domain.entities.Ticket

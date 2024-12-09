@@ -19,42 +19,64 @@ fun getTicketDelegate() = adapterDelegateViewBinding<Ticket, Ticket, TicketItemB
     { layoutInflater, root -> TicketItemBinding.inflate(layoutInflater, root, false) }
 ) {
     bind {
-        binding.price.text = context.getString(R.string.price,item.price.value.formatDecimal())
+        binding.price.text = context.getString(R.string.price, item.price.value.formatDecimal())
         binding.timeStart.text = formatDateTimeToHours(item.departure.date)
         binding.timeEnd.text = formatDateTimeToHours(item.arrival.date)
         binding.origin.text = item.departure.airport
         binding.destination.text = item.arrival.airport
-        var conditions = context.getString(R.string.travel_length, calculateHoursDifference(item.departure.date,item.arrival.date))
+        var conditions = context.getString(
+            R.string.travel_length,
+            calculateHoursDifference(item.departure.date, item.arrival.date)
+        )
         if (item.hasTransfer) {
             binding.conditions.text = conditions
         } else {
-            val styledText = createStyledText(conditions,"/",context.getString(R.string.has_no_transfer), context)
+            val styledText = createStyledText(
+                conditions,
+                "/",
+                context.getString(R.string.has_no_transfer),
+                context
+            )
             binding.conditions.text = styledText
         }
     }
 }
 
-fun getTicketDelegateWithBadge() = adapterDelegateViewBinding<Ticket, Ticket, TicketItemWithBadgeBinding>(
-    { layoutInflater, root -> TicketItemWithBadgeBinding.inflate(layoutInflater, root, false) }
-) {
-    bind {
-        binding.commentBadge.text = item.badge
-        binding.price.text = context.getString(R.string.price,item.price.value.formatDecimal())
-        binding.timeStart.text = formatDateTimeToHours(item.departure.date)
-        binding.timeEnd.text = formatDateTimeToHours(item.arrival.date)
-        binding.origin.text = item.departure.airport
-        binding.destination.text = item.arrival.airport
-        var conditions = context.getString(R.string.travel_length, calculateHoursDifference(item.departure.date,item.arrival.date))
-        if (item.hasTransfer) {
-            binding.conditions.text = conditions
-        } else {
-            val styledText = createStyledText(conditions,DIVIDER,context.getString(R.string.has_no_transfer), context)
-            binding.conditions.text = styledText
+fun getTicketDelegateWithBadge() =
+    adapterDelegateViewBinding<Ticket, Ticket, TicketItemWithBadgeBinding>(
+        { layoutInflater, root -> TicketItemWithBadgeBinding.inflate(layoutInflater, root, false) }
+    ) {
+        bind {
+            binding.commentBadge.text = item.badge
+            binding.price.text = context.getString(R.string.price, item.price.value.formatDecimal())
+            binding.timeStart.text = formatDateTimeToHours(item.departure.date)
+            binding.timeEnd.text = formatDateTimeToHours(item.arrival.date)
+            binding.origin.text = item.departure.airport
+            binding.destination.text = item.arrival.airport
+            var conditions = context.getString(
+                R.string.travel_length,
+                calculateHoursDifference(item.departure.date, item.arrival.date)
+            )
+            if (item.hasTransfer) {
+                binding.conditions.text = conditions
+            } else {
+                val styledText = createStyledText(
+                    conditions,
+                    DIVIDER,
+                    context.getString(R.string.has_no_transfer),
+                    context
+                )
+                binding.conditions.text = styledText
+            }
         }
     }
-}
 
-private fun createStyledText(firstPart: String, divider: String, secondPart: String, context: Context): SpannableStringBuilder {
+private fun createStyledText(
+    firstPart: String,
+    divider: String,
+    secondPart: String,
+    context: Context
+): SpannableStringBuilder {
     val spannable = SpannableStringBuilder()
 
     spannable.append(firstPart)
@@ -69,7 +91,7 @@ private fun createStyledText(firstPart: String, divider: String, secondPart: Str
     spannable.append(" ")
     spannable.append(divider)
     spannable.setSpan(
-        ForegroundColorSpan(colorResToColorInt(R.color.grey6,context)),
+        ForegroundColorSpan(colorResToColorInt(R.color.grey6, context)),
         dividerStart,
         spannable.length,
         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

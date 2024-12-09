@@ -43,4 +43,4 @@ data class TicketDto(
     @SerializedName("is_exchangable")
     @Expose
     val isExchangeable: Boolean,
-    )
+)

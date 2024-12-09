@@ -1,4 +1,4 @@
-package com.example.data.network;
+package com.example.data.network
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -23,7 +23,7 @@ object ApiFactory {
         return retrofit.create(TicketsApiService::class.java)
     }
 
-    fun createOffersApiService(retrofit: Retrofit):  OffersApiService {
+    fun createOffersApiService(retrofit: Retrofit): OffersApiService {
         return retrofit.create(OffersApiService::class.java)
     }
 

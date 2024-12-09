@@ -1,10 +1,6 @@
 package com.sonozaki.ticketsapp.ui.fragments
 
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import com.sonozaki.ticketsapp.R
 import com.sonozaki.ticketsapp.adapter.ticket.AsyncListTicketDifferAdapter
 import com.sonozaki.ticketsapp.databinding.FragmentAllTicketsBinding
 import com.sonozaki.ticketsapp.domain.entities.RequestResult
@@ -22,16 +19,14 @@ import com.sonozaki.ticketsapp.domain.entities.Ticket
 import com.sonozaki.ticketsapp.domain.entities.TravelParams
 import com.sonozaki.ticketsapp.states.TicketState
 import com.sonozaki.ticketsapp.ui.viewmodels.TicketViewModel
+import com.sonozaki.ticketsapp.utils.daysSinceEpochToDate
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.getValue
-import com.sonozaki.ticketsapp.R
-import com.sonozaki.ticketsapp.utils.colorResToColorInt
-import com.sonozaki.ticketsapp.utils.daysSinceEpochToDate
-import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AllTicketsFragment: Fragment() {
+class AllTicketsFragment : Fragment() {
 
     private var _binding: FragmentAllTicketsBinding? = null
 
@@ -66,13 +61,13 @@ class AllTicketsFragment: Fragment() {
     }
 
     private fun observeBackButton() {
-        binding.back.setOnClickListener  {
+        binding.back.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
     }
 
     private fun loadData() {
-        val travelParams = TravelParams(args.startCity,args.endCity,args.date)
+        val travelParams = TravelParams(args.startCity, args.endCity, args.date)
         viewModel.updateTravelParams(travelParams)
     }
 
@@ -87,7 +82,7 @@ class AllTicketsFragment: Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.ticketDataFlow.collect {
-                    when(it) {
+                    when (it) {
                         is TicketState.Data -> handleData(it.result)
                         is TicketState.Loading -> handleLoading()
                     }
@@ -98,8 +93,15 @@ class AllTicketsFragment: Fragment() {
 
     private fun setupText(travelParams: TravelParams) {
         with(binding) {
-            destinations.text = requireContext().getString(R.string.destinations,travelParams.startCity,travelParams.endCity)
-            date.text = requireContext().getString(R.string.date_params, daysSinceEpochToDate(travelParams.departureDate))
+            destinations.text = requireContext().getString(
+                R.string.destinations,
+                travelParams.startCity,
+                travelParams.endCity
+            )
+            date.text = requireContext().getString(
+                R.string.date_params,
+                daysSinceEpochToDate(travelParams.departureDate)
+            )
         }
     }
 
@@ -111,7 +113,7 @@ class AllTicketsFragment: Fragment() {
     private fun handleData(result: RequestResult<List<Ticket>>) {
         binding.progress.visibility = View.GONE
         binding.allTickets.visibility = View.VISIBLE
-        when(result) {
+        when (result) {
             is RequestResult.Data -> ticketAdapter.items = result.data
             is RequestResult.Error -> Log.w("error", "loading error")
         }

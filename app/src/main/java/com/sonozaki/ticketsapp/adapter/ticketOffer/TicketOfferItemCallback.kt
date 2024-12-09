@@ -1,11 +1,10 @@
 package com.sonozaki.ticketsapp.adapter.ticketOffer
 
 import androidx.recyclerview.widget.DiffUtil
-import com.sonozaki.ticketsapp.domain.entities.Offer
 import com.sonozaki.ticketsapp.domain.entities.TicketOffer
 import javax.inject.Inject
 
-class TicketOfferItemCallback @Inject constructor(): DiffUtil.ItemCallback<TicketOffer>() {
+class TicketOfferItemCallback @Inject constructor() : DiffUtil.ItemCallback<TicketOffer>() {
     override fun areItemsTheSame(
         oldItem: TicketOffer,
         newItem: TicketOffer

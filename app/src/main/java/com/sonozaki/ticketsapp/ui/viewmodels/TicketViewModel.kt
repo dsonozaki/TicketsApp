@@ -1,6 +1,5 @@
 package com.sonozaki.ticketsapp.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sonozaki.ticketsapp.domain.entities.TravelParams

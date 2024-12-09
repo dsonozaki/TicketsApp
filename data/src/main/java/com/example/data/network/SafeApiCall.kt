@@ -4,6 +4,9 @@ import com.sonozaki.ticketsapp.domain.entities.RequestResult
 import retrofit2.Response
 import java.io.IOException
 
+/**
+ * Function for getting RequestResult from API calls
+ */
 suspend fun <T> safeApiCall(unsafeCall: suspend () -> Response<T>): RequestResult<T> {
     return try {
         val response = unsafeCall()

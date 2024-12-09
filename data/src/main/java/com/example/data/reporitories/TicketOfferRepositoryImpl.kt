@@ -19,16 +19,19 @@ class TicketOfferRepositoryImpl(
     private val ticketsOfferApiService: OfferTicketsApiService,
     private val ticketsOfferDAO: TicketOffersDAO,
     private val ticketOfferMapper: TicketOfferMapper,
+    //flow of api request errors
     private val errorFlow: MutableSharedFlow<RequestResult.Error<List<TicketOffer>>>
 ) : TicketOfferRepository {
 
-    override fun getTicketOffers(): Flow<RequestResult<List<TicketOffer>>> = merge(
+    override fun getTicketOffers(): Flow<RequestResult<List<TicketOffer>>> =
+        //return merged flows of data from database and data from error flow
+        merge(
         ticketsOfferDAO.getTicketOffers().filter { it.isNotEmpty() }
             .map { RequestResult.Data(ticketOfferMapper.mapDbToDomainList(it)) }, errorFlow
     )
 
 
-    override suspend fun updateTicketOffers(travelParams: TravelParams) {
+    override suspend fun updateTicketOffers() {
         val ticketOffers = safeApiCall { ticketsOfferApiService.getOfferTickets() }
         when (ticketOffers) {
             is RequestResult.Error<TicketOffersResponseDto> -> errorFlow.emit(

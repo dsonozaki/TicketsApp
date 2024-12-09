@@ -19,11 +19,13 @@ class TicketRepositoryImpl(
     private val ticketsApiService: TicketsApiService,
     private val ticketsDAO: TicketsDAO,
     private val ticketMapper: TicketMapper,
+    //flow of api request errors
     private val errorFlow: MutableSharedFlow<RequestResult.Error<List<Ticket>>>
 ) : TicketRepository {
 
 
     override fun getTickets(): Flow<RequestResult<List<Ticket>>> =
+        //return merged flows of data from database and data from error flow
         merge(
             ticketsDAO.getTickets().filter {
                 it.isNotEmpty()
@@ -31,7 +33,7 @@ class TicketRepositoryImpl(
             errorFlow
         )
 
-    override suspend fun updateTickets(travelParams: TravelParams) {
+    override suspend fun updateTickets() {
         val tickets = safeApiCall { ticketsApiService.getTickets() }
         when (tickets) {
             is RequestResult.Error<TicketsResponseDto> -> errorFlow.emit(

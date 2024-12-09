@@ -75,6 +75,9 @@ class TicketOffersFragment: Fragment() {
         setupOpenNextScreenButton()
     }
 
+    /**
+     * Next fragment opening and passing data about travel
+     */
     private fun setupOpenNextScreenButton() {
         binding.seeAllTickets.setOnClickListener {
             viewModel.travelParams?.let {
@@ -103,9 +106,11 @@ class TicketOffersFragment: Fragment() {
     }
 
     private fun observeClickedButtons() {
+        //clear text button handling
         binding.clear.setOnClickListener {
             binding.endPoint.setText("")
         }
+        //change texts button handling
         binding.reverse.setOnClickListener {
             val endPoint = binding.endPoint.text.toString()
             val startPoint = binding.startPoint.text.toString()
@@ -113,11 +118,16 @@ class TicketOffersFragment: Fragment() {
             binding.startPoint.setText(endPoint)
             updateTravelPoints()
         }
+        //back button handling
         binding.back.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
     }
 
+    /**
+     * Show date picker
+     * @param updateDate if true, update departure date data on positive button click.
+     */
     private fun showDatePicker(updateDate: Boolean) {
         val datePicker = MaterialDatePicker.Builder.datePicker()
             .build()
@@ -133,6 +143,9 @@ class TicketOffersFragment: Fragment() {
         }
     }
 
+    /**
+     * Handle clicks on date selection chips
+     */
     private fun observeClickedCalendars() {
         binding.arrivalDate.setOnClickListener {
             showDatePicker(true)
@@ -142,6 +155,9 @@ class TicketOffersFragment: Fragment() {
         }
     }
 
+    /**
+     * Update travel destinations data when user clicks enter button
+     */
     private fun observeEnteredText() {
         binding.endPoint.setOnEditorActionListener { _: TextView?, eventId: Int, _: KeyEvent? ->
             if (eventId == EditorInfo.IME_ACTION_SEND) {
@@ -157,6 +173,9 @@ class TicketOffersFragment: Fragment() {
         }
     }
 
+    /**
+     * Observe ticket offers data
+     */
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -190,6 +209,7 @@ class TicketOffersFragment: Fragment() {
             is RequestResult.Data -> {
                 ticketOfferAdapter.items = result.data.take(3)
             }
+            //place for handling errors
             is RequestResult.Error -> Log.w("Loading error",result.errorText)
         }
     }
@@ -199,6 +219,9 @@ class TicketOffersFragment: Fragment() {
         binding.flights.visibility = View.GONE
     }
 
+    /**
+     * Restore text from passed arguments
+     */
     private fun setupText() {
         if (!viewModel.textSetupEnded) {
             binding.startPoint.setText(args.startPoint)
@@ -212,12 +235,18 @@ class TicketOffersFragment: Fragment() {
         viewModel.updateTravelPoints(Travel(binding.startPoint.text.toString(), binding.endPoint.text.toString()))
     }
 
+    /**
+     * Setup recyclerview adapter
+     */
     private fun setupRecyclerView() {
         with(binding.flights) {
             adapter = ticketOfferAdapter
         }
     }
 
+    /**
+     * Prohibit text other than cyrillic one
+     */
     private fun setupRussianTextViews() {
         binding.startPoint.filters = arrayOf(inputFilter)
         binding.endPoint.filters = arrayOf(inputFilter)

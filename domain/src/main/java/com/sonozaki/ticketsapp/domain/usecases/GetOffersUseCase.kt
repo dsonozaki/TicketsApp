@@ -6,6 +6,9 @@ import com.sonozaki.ticketsapp.domain.repositories.OfferRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * Get cached offers
+ */
 class GetOffersUseCase @Inject constructor(private val repository: OfferRepository) {
     operator fun invoke(): Flow<RequestResult<List<Offer>>> = repository.getOffers()
 }

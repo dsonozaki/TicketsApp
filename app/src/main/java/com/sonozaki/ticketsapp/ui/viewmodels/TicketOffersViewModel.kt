@@ -22,10 +22,14 @@ import javax.inject.Named
 class TicketOffersViewModel @Inject constructor(
     getTicketOffersUseCase: GetTicketOffersUseCase,
     private val updateTicketOffersUseCase: UpdateTicketOffersUseCase,
+    //Flow of travel dates. Initialized with present day, present time.
     @Named("date")
     private val _dateFlow: MutableStateFlow<Long>,
+    //Flow of travel destinations
     private val _travelsFlow: MutableSharedFlow<Travel>,
+    //A flow that stores information about the validity of the data. Data invalidates when new data loading starts.
     private val dataValidFlow: MutableSharedFlow<Boolean>,
+    //Parameters of travel for passing to next screen
     private var _travelParams: TravelParams?,
     sharingStarted: SharingStarted
 ) : ViewModel() {
@@ -38,6 +42,7 @@ class TicketOffersViewModel @Inject constructor(
 
     val travelParams get() = _travelParams
 
+    //variable for avoiding unnecessary text setup
     var textSetupEnded = false
 
     val ticketOffersFlow = combine(getTicketOffersUseCase(), dataValidFlow) { result, valid ->
@@ -57,6 +62,7 @@ class TicketOffersViewModel @Inject constructor(
             combine(_travelsFlow, _dateFlow) { travel, date ->
                 TravelParams(travel.startPoint, travel.endPoint, date)
             }.collect {
+                //if travel destinations or departure date changes, save changes to variable, update data and validate data
                 _travelParams = it
                 updateTicketOffersUseCase(it)
                 dataValidFlow.emit(true)
@@ -64,6 +70,9 @@ class TicketOffersViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Change date and invalidate data
+     */
     fun updateDate(date: Long) {
         viewModelScope.launch {
             dataValidFlow.emit(false)
@@ -71,6 +80,9 @@ class TicketOffersViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Change travel destinations and invalidate data
+     */
     fun updateTravelPoints(travelPoints: Travel) {
         viewModelScope.launch {
             dataValidFlow.emit(false)

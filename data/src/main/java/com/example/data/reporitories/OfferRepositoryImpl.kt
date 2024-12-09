@@ -18,8 +18,10 @@ class OfferRepositoryImpl(
     private val offersApiService: OffersApiService,
     private val offersDAO: OffersDAO,
     private val offerMapper: OfferMapper,
+    //flow of api request errors
     private val errorFlow: MutableSharedFlow<RequestResult.Error<List<Offer>>>
 ) : OfferRepository {
+    //Cache validity flag. Validates automatically after first data loading.
     private var loaded: Boolean = false
 
 
@@ -43,6 +45,7 @@ class OfferRepositoryImpl(
     }
 
     override fun getOffers(): Flow<RequestResult<List<Offer>>> {
+        //return merged flows of data from database and data from error flow
         return merge(
             offersDAO.getOffers().filter { it.isNotEmpty() }
                 .map { RequestResult.Data(offerMapper.mapDbToDomainList(it)) },

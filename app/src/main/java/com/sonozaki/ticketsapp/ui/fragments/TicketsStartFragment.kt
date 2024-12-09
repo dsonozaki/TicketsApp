@@ -59,6 +59,7 @@ class TicketsStartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        restoreFragmentListener()
         setupRussianTextViews()
         loadStartCity()
         listenStartCity()
@@ -68,6 +69,17 @@ class TicketsStartFragment : Fragment() {
         listenToNavigate()
     }
 
+    /**
+     * Restore fragment listener if bottom sheet fragment found. For some reason works more stable than saving data about opened bottom sheet in Flow.
+     */
+    private fun restoreFragmentListener() {
+        val endpointSelectionFragment = parentFragmentManager.findFragmentByTag(EndpointSelectionFragment.TAG);
+        endpointSelectionFragment?.setFragmentResultListener(REQUEST_KEY, ::bottomSheetResultListener)
+    }
+
+    /**
+     * Restore start city text
+     */
     private fun listenStartCity() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -80,21 +92,30 @@ class TicketsStartFragment : Fragment() {
         }
     }
 
+    /**
+     * Restore start city from cache
+     */
     private fun loadStartCity() {
         viewModel.loadStartCity()
     }
 
+    /**
+     * Prohibit symbols other than cyrillic in edit text
+     */
     private fun setupRussianTextViews() {
         binding.startPoint.filters = arrayOf(inputFilter)
     }
 
+    /**
+     * Setup bottom sheet
+     */
     private fun listenToNavigate() {
         binding.endPoint.setOnClickListener {
             val startPointText = binding.startPoint.text.toString()
             if (startPointText.isNotBlank()) {
                 val bottomSheetFragment =
                     EndpointSelectionFragment.newInstance(startPointText)
-                bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+                bottomSheetFragment.show(parentFragmentManager, EndpointSelectionFragment.TAG)
                 bottomSheetFragment.setFragmentResultListener(
                     REQUEST_KEY,
                     ::bottomSheetResultListener
@@ -134,16 +155,25 @@ class TicketsStartFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    /**
+     * Save new start city in cache when user updates text
+     */
     private fun updateStartPoint() {
         binding.startPoint.doOnTextChanged { text, _, _, _ -> viewModel.updateInitialCity(text.toString()) }
     }
 
+    /**
+     * Setup adapter
+     */
     private fun setupRecyclerView() {
         with(binding.offersList) {
             adapter = offerDifferAdapter
         }
     }
 
+    /**
+     * Observe offers data.
+     */
     private fun listenState() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -170,6 +200,7 @@ class TicketsStartFragment : Fragment() {
         binding.progress.visibility = View.GONE
         when (result) {
             is RequestResult.Data -> offerDifferAdapter.items = result.data
+            //place for error handling
             is RequestResult.Error -> Log.w("net_error", result.errorText)
         }
     }

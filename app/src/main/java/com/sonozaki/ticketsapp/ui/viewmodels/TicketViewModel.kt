@@ -21,6 +21,7 @@ class TicketViewModel @Inject constructor(
     getTicketsUseCase: GetTicketsUseCase,
     private val updateTicketsUseCase: UpdateTicketsUseCase,
     private val _travelParamsFlow: MutableStateFlow<TravelParams>,
+    //A flow that stores information about the validity of the data. Data invalidates when new data loading starts.
     private val dataValidFlow: MutableSharedFlow<Boolean>,
     sharingStarted: SharingStarted
 ) : ViewModel() {
@@ -39,6 +40,9 @@ class TicketViewModel @Inject constructor(
         TicketState.Loading
     )
 
+    /**
+     * Function for updating ticket params, invalidating data, loading new data, validating data
+     */
     fun updateTravelParams(travelParams: TravelParams) {
         viewModelScope.launch {
             _travelParamsFlow.emit(travelParams)

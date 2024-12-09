@@ -8,6 +8,9 @@ import java.io.InputStream
 import java.io.OutputStream
 import javax.inject.Inject
 
+/**
+ * Serializer for storing TravelParams in Datastore.
+ */
 class TravelParamsSerializer @Inject constructor() : Serializer<TravelParamsDto> {
     override val defaultValue: TravelParamsDto
         get() = TravelParamsDto()

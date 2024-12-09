@@ -26,6 +26,7 @@ class TicketsStartViewModel @Inject constructor(
     private val setStartCityUseCase: SetStartCityUseCase,
     private val updateOffersUseCase: UpdateOffersUseCase,
     @Named("startCityFlow") private val startCityFlow: MutableStateFlow<String?>,
+    //A flow that stores information about the validity of the data. Data invalidates when new data loading starts.
     private val dataValidFlow: MutableSharedFlow<Boolean>,
     sharingStarted: SharingStarted
 ) : ViewModel() {
@@ -49,6 +50,9 @@ class TicketsStartViewModel @Inject constructor(
 
     val startCity = startCityFlow.asStateFlow()
 
+    /**
+     * Function for data invalidation, loading and validation
+     */
     fun loadOffers() {
         viewModelScope.launch {
             dataValidFlow.emit(false)

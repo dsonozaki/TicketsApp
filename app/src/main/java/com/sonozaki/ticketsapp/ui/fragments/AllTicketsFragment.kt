@@ -60,17 +60,26 @@ class AllTicketsFragment : Fragment() {
         observeBackButton()
     }
 
+    /**
+     * Handle back button
+     */
     private fun observeBackButton() {
         binding.back.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
     }
 
+    /**
+     * Restore travel parameters from arguments and load new data
+     */
     private fun loadData() {
         val travelParams = TravelParams(args.startCity, args.endCity, args.date)
         viewModel.updateTravelParams(travelParams)
     }
 
+    /**
+     * Get items data and travel data
+     */
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -119,6 +128,9 @@ class AllTicketsFragment : Fragment() {
         }
     }
 
+    /**
+     * Setup recyclerview adapter
+     */
     private fun setupRecyclerView() {
         with(binding.allTickets) {
             adapter = ticketAdapter

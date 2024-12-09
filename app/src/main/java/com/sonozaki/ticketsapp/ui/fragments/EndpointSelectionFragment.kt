@@ -49,6 +49,9 @@ class EndpointSelectionFragment : BottomSheetDialogFragment() {
         expandBottomSheet()
     }
 
+    /**
+     * Set bottom sheet to full size
+     */
     private fun expandBottomSheet() {
         val bottomSheetDialog = dialog as BottomSheetDialog
         val parentLayout =
@@ -67,14 +70,24 @@ class EndpointSelectionFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRussianTextViews()
         setupDialogBackground()
-        arguments?.let {
-            val startPoint = it.getString(START_POINT) ?: ""
-            binding.startPoint.text = startPoint
-        }
+        restoreStartPoint()
         listenToButtons()
         listenToTextInput()
     }
 
+    /**
+     * Restore start point text
+     */
+    private fun restoreStartPoint() {
+        arguments?.let {
+            val startPoint = it.getString(START_POINT) ?: ""
+            binding.startPoint.text = startPoint
+        }
+    }
+
+    /**
+     * Setup transparent background
+     */
     fun setupDialogBackground() {
         dialog?.apply {
             setOnShowListener {
@@ -85,6 +98,9 @@ class EndpointSelectionFragment : BottomSheetDialogFragment() {
         }
     }
 
+    /**
+     * Show user next screen when he press enter button
+     */
     private fun listenToTextInput() {
         binding.endPoint.apply {
             setOnEditorActionListener { _: TextView?, eventId: Int, _: KeyEvent? ->
@@ -96,10 +112,16 @@ class EndpointSelectionFragment : BottomSheetDialogFragment() {
         }
     }
 
+    /**
+     * Prohibit text other than cyrillic
+     */
     private fun setupRussianTextViews() {
         binding.endPoint.filters = arrayOf(inputFilter)
     }
 
+    /**
+     * Handle button clicks. Some buttons change arrival point text and open next screen, others open placeholder.
+     */
     private fun listenToButtons() {
         with(binding) {
             binding.phuket.setOnClickListener {
@@ -145,6 +167,7 @@ class EndpointSelectionFragment : BottomSheetDialogFragment() {
         dismiss()
     }
 
+
     private fun delayMoveToTicketOffers(endpointText: String) {
         viewLifecycleOwner.lifecycleScope.launch {
             delay(DELAY)
@@ -168,6 +191,7 @@ class EndpointSelectionFragment : BottomSheetDialogFragment() {
     }
 
     companion object {
+        const val TAG = "endpoint_selection"
         private const val DELAY = 300L
         const val START_POINT = "startpoint_key"
         const val ENDPOINT_KEY = "endpoint_key"

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp">
+
+    <View
+        android:id="@+id/item_circle"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="@dimen/normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/circle"
+        tools:backgroundTint="@color/red" />
+
+    <TextView
+        android:id="@+id/company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal"
+        android:layout_marginTop="@dimen/normal"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/item_circle"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Уральские авиалинии" />
+
+
+    <TextView
+        android:id="@+id/available_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/small"
+        android:ellipsize="end"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Text2"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/company_name"
+        tools:text="07:00 09:10 10:00 11:00 12:00 13:00 12:00 07:00 09:10 10:00 11:00 12:00 13:00 12:00" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title4"
+            android:maxLines="1"
+            android:textColor="@color/blue"
+            tools:text="2 390 Р" />
+
+        <ImageView
+            android:layout_width="@dimen/normal_icon_size"
+            android:layout_height="@dimen/normal_icon_size"
+            android:layout_marginTop="2.5dp"
+            android:src="@drawable/arrow" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nano"
+        android:layout_marginTop="@dimen/normal"
+        android:background="@color/grey4"
+        app:layout_constraintTop_toBottomOf="@id/available_time" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

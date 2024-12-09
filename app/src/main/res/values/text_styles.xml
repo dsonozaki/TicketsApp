@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="Base.TextAppearance.AppCompat.Title1">
+        <item name="fontFamily">@font/sf_pro_semibold_font</item>
+        <item name="android:textSize">@dimen/very_large_font_size</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Title2">
+        <item name="fontFamily">@font/sf_pro_semibold_font</item>
+        <item name="android:textSize">@dimen/large_font_size</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Title3">
+        <item name="fontFamily">@font/sf_pro_semibold_font</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Title4">
+        <item name="fontFamily">@font/sf_pro_medium_italic_font</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Text1">
+        <item name="fontFamily">@font/sf_pro_regular_font</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Text2">
+        <item name="fontFamily">@font/sf_pro_regular_font</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.ButtonText">
+        <item name="fontFamily">@font/sf_pro_semibold_font</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Tab">
+        <item name="fontFamily">@font/sf_pro_regular_font</item>
+        <item name="android:textSize">@dimen/tiny_font_size</item>
+    </style>
+</resources>

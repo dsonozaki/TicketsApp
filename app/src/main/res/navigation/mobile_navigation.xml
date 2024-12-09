@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/ticket_start">
+
+    <fragment
+        android:id="@+id/ticket_start"
+        android:name="com.sonozaki.ticketsapp.ui.fragments.TicketsStartFragment"
+        android:label="@string/tickets"
+        tools:layout="@layout/fragment_tickets" >
+        <action
+            android:id="@+id/action_tickets_to_placeHolderFragment"
+            app:destination="@id/placeHolderFragment" />
+        <action
+            android:id="@+id/action_tickets_to_ticketOffersFragment"
+            app:destination="@id/ticketOffersFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hotels"
+        android:name="com.sonozaki.ticketsapp.ui.fragments.HotelsFragment"
+        android:label="@string/hotels"
+        tools:layout="@layout/fragment_hotels" />
+
+    <fragment
+        android:id="@+id/shorter"
+        android:name="com.sonozaki.ticketsapp.ui.fragments.ShorterFragment"
+        android:label="@string/shorter"
+        tools:layout="@layout/fragment_shorter" />
+
+    <fragment
+        android:id="@+id/subscriptions"
+        android:name="com.sonozaki.ticketsapp.ui.fragments.SubscriptionsFragment"
+        android:label="@string/subscriptions"
+        tools:layout="@layout/fragment_subscriptions" />
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.sonozaki.ticketsapp.ui.fragments.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/placeHolderFragment"
+        android:name="com.sonozaki.ticketsapp.ui.fragments.PlaceHolderFragment"
+        android:label="PlaceHolderFragment" />
+    <fragment
+        android:id="@+id/ticketOffersFragment"
+        android:name="com.sonozaki.ticketsapp.ui.fragments.TicketOffersFragment"
+        android:label="TicketOffersFragment" >
+        <argument
+            android:name="startPoint"
+            app:argType="string" />
+        <argument android:name="endPoint"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_ticketOffersFragment_to_allTicketsFragment"
+            app:destination="@id/allTicketsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allTicketsFragment"
+        android:name="com.sonozaki.ticketsapp.ui.fragments.AllTicketsFragment"
+        android:label="AllTicketsFragment">
+        <argument
+            android:name="date"
+            app:argType="long" />
+        <argument
+            android:name="startCity"
+            app:argType="string" />
+        <argument
+            android:name="endCity"
+            app:argType="string" />
+    </fragment>
+</navigation>

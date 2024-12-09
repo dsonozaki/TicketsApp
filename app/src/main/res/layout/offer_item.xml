@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/big">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeable_iv_offer"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        tools:src="@drawable/die_antwood"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/OfferImage" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title2"
+        android:textColor="@color/white"
+        tools:text="Socrat&amp; Lera" />
+
+    <TextView
+        android:id="@+id/tv_town"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Text1"
+        tools:text="Санкт-Петербург"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/big_icon_size"
+            android:layout_height="@dimen/big_icon_size"
+            android:src="@drawable/plane_icon"
+            app:tint="@color/grey6"
+            android:layout_marginEnd="@dimen/normal"/>
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Text1"
+            tools:text="от 2390 Р"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>

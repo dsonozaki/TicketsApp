@@ -1,6 +1,5 @@
 package com.example.data.network
 
-import com.example.data.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,7 +11,7 @@ object ApiFactory {
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -29,4 +28,7 @@ object ApiFactory {
     fun createOfferTicketsApiService(retrofit: Retrofit): OfferTicketsApiService {
         return retrofit.create(OfferTicketsApiService::class.java)
     }
+
+
+    private const val  BASE_URL = "https://drive.usercontent.google.com/"
 }

@@ -1,5 +1,3 @@
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -7,20 +5,11 @@ plugins {
     alias(libs.plugins.serialization.plugin)
 }
 
-val localProps = Properties()
-val localPropertiesFile = File(rootProject.rootDir,"local.properties")
-if (localPropertiesFile.exists() && localPropertiesFile.isFile) {
-    localPropertiesFile.inputStream().use {
-        localProps.load(it)
-    }
-}
-
 android {
     namespace = "com.example.data"
     compileSdk = 35
 
     defaultConfig {
-        buildConfigField("String", "BASE_URL", localProps.getProperty("BASE_URL"))
         minSdk = 24
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
